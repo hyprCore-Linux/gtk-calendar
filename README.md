@@ -39,3 +39,7 @@ sudo apt-get install python3-gi gir1.2-gtk-4.0 \
 ```
 
 Or `./install.sh`.
+
+## License
+
+GNU General Public License v3.0. See [LICENSE](LICENSE).
