@@ -98,7 +98,7 @@ class CalendarWindow(Gtk.ApplicationWindow):
             header,
             about_name="GTK Calendar",
             about_comments=(
-                "Month calendar for the Neuronix GTK-Apps suite. "
+                "Month calendar for the hyprCore Linux GTK apps. "
                 "Sign in to Google Calendar or add .ics files and webcal URLs."
             ),
         )

@@ -1,8 +1,8 @@
 # gtk-calendar
 
-GTK4 month calendar for the Neuronix GTK-Apps suite. Sign in to Google Calendar and/or load `.ics` files and `webcal://` / `https://` feeds.
+GTK4 month calendar for the hyprCore Linux GTK apps. Sign in to Google Calendar and/or load `.ics` files and `webcal://` / `https://` feeds.
 
-Created by Kevin Hinds — [github.com/NeuronixOS/GTK-Apps](https://github.com/NeuronixOS/GTK-Apps)
+Created by Kevin Hinds
 
 ## Features
 
@@ -32,7 +32,7 @@ Without Google libraries installed, `.ics` sources still work.
 ## Dependencies
 
 ```bash
-# Debian / Ubuntu / Neuronix
+# Debian / Ubuntu / hyprCore Linux
 sudo apt-get install python3-gi gir1.2-gtk-4.0 \
   python3-googleapi python3-google-auth python3-google-auth-oauthlib \
   python3-google-auth-httplib2 python3-icalendar python3-dateutil
