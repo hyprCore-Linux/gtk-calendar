@@ -59,12 +59,7 @@ WEEKDAY_SUN = ("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat")
 
 
 def _alert(parent: Gtk.Window, title: str, detail: str) -> None:
-    dialog = Gtk.AlertDialog()
-    dialog.set_modal(True)
-    dialog.set_message(title)
-    dialog.set_detail(detail)
-    dialog.set_buttons(["OK"])
-    dialog.show(parent)
+    gtk_theme.present_message(parent, title, detail)
 
 
 class CalendarWindow(Gtk.ApplicationWindow):
@@ -88,10 +83,7 @@ class CalendarWindow(Gtk.ApplicationWindow):
         self._day_buttons: list[Gtk.Button] = []
 
         header = Gtk.HeaderBar()
-        header.set_show_title_buttons(True)
-        self._title = Gtk.Label(label="Calendar")
-        self._title.add_css_class("title")
-        header.set_title_widget(self._title)
+        gtk_theme.prepare_headerbar(header)
         self.set_titlebar(header)
         gtk_theme.attach_profile_menu(
             self,
@@ -101,6 +93,10 @@ class CalendarWindow(Gtk.ApplicationWindow):
                 "Month calendar for the hyprCore Linux GTK apps. "
                 "Sign in to Google Calendar or add .ics files and webcal URLs."
             ),
+        )
+        # Center content title (month/week); left brand stays "GTK Calendar".
+        self._title = getattr(self, "_gtk_theme_content_label", None) or Gtk.Label(
+            label="Calendar"
         )
 
         prev_btn = Gtk.Button.new_from_icon_name("go-previous-symbolic")
@@ -524,6 +520,7 @@ class CalendarWindow(Gtk.ApplicationWindow):
             self._title.set_label(date(self.view_year, self.view_month, 1).strftime("%B %Y"))
             self.add_css_class("cal-month-view")
             self.remove_css_class("cal-week-view")
+        self._title.set_visible(True)
         self._rebuild_weekdays()
         today = date.today()
         cells = self._visible_cells()
@@ -1212,7 +1209,7 @@ class SourcesWindow(Gtk.Window):
         self.store = parent.store
 
         header = Gtk.HeaderBar()
-        header.set_show_title_buttons(True)
+        gtk_theme.prepare_headerbar(header)
         self.set_titlebar(header)
 
         scrolled = Gtk.ScrolledWindow()
